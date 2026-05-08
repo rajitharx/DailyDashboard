@@ -1,0 +1,11 @@
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/bin/Debug/net9.0/DailyBoard.Domain.deps.json
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/bin/Debug/net9.0/DailyBoard.Domain.dll
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/bin/Debug/net9.0/DailyBoard.Domain.pdb
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.AssemblyInfoInputs.cache
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.AssemblyInfo.cs
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.csproj.CoreCompileInputs.cache
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.dll
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/refint/DailyBoard.Domain.dll
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/DailyBoard.Domain.pdb
+/Users/rajitha/Development/DailyDashboard/src/DailyBoard.Domain/obj/Debug/net9.0/ref/DailyBoard.Domain.dll
