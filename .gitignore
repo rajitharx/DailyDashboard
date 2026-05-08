@@ -5,6 +5,10 @@ obj/
 *.suo
 *.userosscache
 *.sln.docstates
+*.dll
+*.pdb
+*.cache
+*.lcache
 
 # VS Code
 .vscode/
