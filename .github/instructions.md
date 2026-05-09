@@ -17,6 +17,8 @@
   - Use TDD: Write failing tests first, then implement code to pass.
   - Use xUnit for C#, React Testing Library/Jest for frontend.
   - All new features must have corresponding tests.
+  - **Any change to application code (domain, application, infrastructure, or API) must be reflected in the test cases.**
+  - When updating method signatures, adding properties, or changing logic, update or add tests to match.
 - **Code Suggestions:**
   - Suggest refactoring for readability, maintainability, and performance.
   - Prefer async/await and CancellationToken in C# APIs.
