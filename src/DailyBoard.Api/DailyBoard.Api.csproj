@@ -17,4 +17,5 @@
     <ProjectReference Include="..\DailyBoard.Infrastructure\DailyBoard.Infrastructure.csproj" />
   </ItemGroup>
 
+
 </Project>

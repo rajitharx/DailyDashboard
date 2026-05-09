@@ -26,4 +26,6 @@
     <ProjectReference Include="..\..\src\DailyBoard.Domain\DailyBoard.Domain.csproj" />
   </ItemGroup>
 
+  <!--  -->
+
 </Project>
