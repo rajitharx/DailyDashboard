@@ -1,6 +1,7 @@
 {
   "name": "dailydashboard",
   "version": "1.0.0",
+  "private": true,
   "description": "Full-stack Clean Architecture solution using .NET 10.0",
   "main": "index.js",
   "directories": {
