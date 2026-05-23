@@ -4,7 +4,6 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import { exec } from "child_process";
-import path from "path";
 
 const PROJECT_DIR = "/Users/rajitha/Development/DailyDashboard"; // change this
 
