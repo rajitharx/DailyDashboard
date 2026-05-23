@@ -1,0 +1,28 @@
+{
+  "name": "dailydashboard",
+  "version": "1.0.0",
+  "description": "Full-stack Clean Architecture solution using .NET 10.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajitharx/DailyDashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/rajitharx/DailyDashboard/issues"
+  },
+  "homepage": "https://github.com/rajitharx/DailyDashboard#readme",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
