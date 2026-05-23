@@ -29,4 +29,19 @@ All tests should pass. API integration tests are set up and working.
 - Tests: All layers covered, TDD enforced, all tests pass
 - Frontend: Not yet implemented
 
+## MCP Server (Node.js)
+A lightweight MCP (Model Context Protocol) helper server has been added to support local developer automation and tooling.
+
+- **Location:** `mcp-server/server.js`
+- **Purpose:** expose project tasks (build, test, search, git status, health checks) via an MCP-compatible endpoint to streamline CI/dev workflows and editor integrations.
+- **Available tools (examples):** `daily-dashboard-mcp` tools for `build`, `test`, `search`, `git_status`, `health_check`, and a `local-engineering-mcp` helper used for local environment checks.
+- **Quick start:** run with Node.js from the repository root:
+
+```bash
+# from repository root
+node mcp-server/server.js
+```
+
+Use an MCP client or editor integration to invoke the exposed tasks (for example, the VS Code MCP integration used in this workspace).
+
 See `Plan.md` for detailed requirements and progress.
