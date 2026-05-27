@@ -15,7 +15,8 @@ namespace DailyBoard.Application.Tests
         public async Task Handle_ShouldAddBoardAndReturnId()
         {
             var repoMock = new Mock<IBoardRepository>();
-            var handler = new CreateBoardCommandHandler(repoMock.Object);
+            var loggerMock = new Mock<Microsoft.Extensions.Logging.ILogger<CreateBoardCommandHandler>>();
+            var handler = new CreateBoardCommandHandler(repoMock.Object, loggerMock.Object);
             var command = new CreateBoardCommand("Test Board", Guid.NewGuid());
 
             var result = await handler.Handle(command, CancellationToken.None);

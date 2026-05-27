@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DailyBoard.Domain;
 using DailyBoard.Application.Repositories;
+using Microsoft.Extensions.Logging;
 
 namespace DailyBoard.Infrastructure.Repositories
 {
@@ -13,10 +14,17 @@ namespace DailyBoard.Infrastructure.Repositories
     {
         private readonly ConcurrentDictionary<Guid, Card> _cards = new();
         private readonly ConcurrentDictionary<Guid, Guid> _cardToBoard = new();
+        private readonly ILogger<InMemoryCardRepository> _logger;
+
+        public InMemoryCardRepository(ILogger<InMemoryCardRepository> logger)
+        {
+            _logger = logger;
+        }
 
         public Task<Card?> GetByIdAsync(Guid id, CancellationToken cancellationToken)
         {
             _cards.TryGetValue(id, out var card);
+            _logger.LogDebug("GetByIdAsync: {CardId} -> {Found}", id, card is not null);
             return Task.FromResult(card);
         }
 
@@ -25,6 +33,7 @@ namespace DailyBoard.Infrastructure.Repositories
             var cards = _cardToBoard.Where(x => x.Value == boardId)
                 .Select(x => _cards[x.Key])
                 .ToList();
+            _logger.LogDebug("GetAllByBoardAsync: board={BoardId} returned {Count} cards", boardId, cards.Count);
             return Task.FromResult((IReadOnlyCollection<Card>)cards);
         }
 
@@ -32,12 +41,14 @@ namespace DailyBoard.Infrastructure.Repositories
         {
             _cards[card.Id] = card;
             _cardToBoard[card.Id] = card.BoardId;
+            _logger.LogInformation("Card added {CardId} to board {BoardId}", card.Id, card.BoardId);
             return Task.CompletedTask;
         }
 
         public Task UpdateAsync(Card card, CancellationToken cancellationToken)
         {
             _cards[card.Id] = card;
+            _logger.LogInformation("Card updated {CardId}", card.Id);
             return Task.CompletedTask;
         }
 
@@ -45,6 +56,7 @@ namespace DailyBoard.Infrastructure.Repositories
         {
             _cards.TryRemove(id, out _);
             _cardToBoard.TryRemove(id, out _);
+            _logger.LogInformation("Card deleted {CardId}", id);
             return Task.CompletedTask;
         }
     }
