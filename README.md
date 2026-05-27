@@ -28,6 +28,10 @@ All tests should pass. API integration tests are set up and working.
 - Backend: Core domain, application, infrastructure, and API layers implemented
 - Tests: All layers covered, TDD enforced, all tests pass
 - Frontend: Not yet implemented
+ - Logging: Serilog added and configured; endpoints, application handlers, and in-memory repositories emit structured logs to the console.
+ - DTOs: API DTO types moved to `src/DailyBoard.Api/DTOs` and are used for all minimal API surface serialization.
+ - In-memory repositories: Instrumented and used by integration tests (registered as singletons for consistent test state).
+ - Notes: You may see a benign package warning (NU1608) about a MediatR extension version mismatch; align package versions to remove it.
 
 ## MCP Server (Node.js)
 A lightweight MCP (Model Context Protocol) helper server has been added to support local developer automation and tooling.
@@ -45,3 +49,20 @@ node mcp-server/server.js
 Use an MCP client or editor integration to invoke the exposed tasks (for example, the VS Code MCP integration used in this workspace).
 
 See `Plan.md` for detailed requirements and progress.
+
+## Quick Tips
+- Run the API from the solution root:
+
+```bash
+cd src/DailyBoard.Api
+dotnet run
+```
+
+- Build and run tests from the repository root:
+
+```bash
+dotnet build
+dotnet test
+```
+
+If you want, I can remove the NU1608 warning by aligning the MediatR and MediatR.Extensions.Microsoft.DependencyInjection package versions across the projects.
