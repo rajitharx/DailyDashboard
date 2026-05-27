@@ -12,7 +12,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task AddAndGetByIdAsync_ShouldReturnCard()
         {
-            var repo = new InMemoryCardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryCardRepository>.Instance;
+            var repo = new InMemoryCardRepository(logger);
             var card = new Card(Guid.NewGuid(), Guid.NewGuid(), "Card 1", "Desc", CardStatus.Todo, DateTime.UtcNow, 1);
             await repo.AddAsync(card, CancellationToken.None);
             var result = await repo.GetByIdAsync(card.Id, CancellationToken.None);
@@ -22,7 +23,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task UpdateAsync_ShouldUpdateCard()
         {
-            var repo = new InMemoryCardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryCardRepository>.Instance;
+            var repo = new InMemoryCardRepository(logger);
             var card = new Card(Guid.NewGuid(), Guid.NewGuid(), "Card 1", "Desc", CardStatus.Todo, DateTime.UtcNow, 1);
             await repo.AddAsync(card, CancellationToken.None);
             card.Update("Updated", "Updated Desc", DateTime.UtcNow.AddDays(1));
@@ -34,7 +36,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task DeleteAsync_ShouldRemoveCard()
         {
-            var repo = new InMemoryCardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryCardRepository>.Instance;
+            var repo = new InMemoryCardRepository(logger);
             var card = new Card(Guid.NewGuid(), Guid.NewGuid(), "Card 1", "Desc", CardStatus.Todo, DateTime.UtcNow, 1);
             await repo.AddAsync(card, CancellationToken.None);
             await repo.DeleteAsync(card.Id, CancellationToken.None);

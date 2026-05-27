@@ -12,7 +12,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task AddAndGetByIdAsync_ShouldReturnBoard()
         {
-            var repo = new InMemoryBoardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryBoardRepository>.Instance;
+            var repo = new InMemoryBoardRepository(logger);
             var board = Board.Create("Board", Guid.NewGuid());
             await repo.AddAsync(board, CancellationToken.None);
             var result = await repo.GetByIdAsync(board.Id, CancellationToken.None);
@@ -22,7 +23,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task GetAllByOwnerAsync_ShouldReturnBoards()
         {
-            var repo = new InMemoryBoardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryBoardRepository>.Instance;
+            var repo = new InMemoryBoardRepository(logger);
             var ownerId = Guid.NewGuid();
             var board1 = Board.Create("Board1", ownerId);
             var board2 = Board.Create("Board2", ownerId);
@@ -36,7 +38,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task UpdateAsync_ShouldUpdateBoard()
         {
-            var repo = new InMemoryBoardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryBoardRepository>.Instance;
+            var repo = new InMemoryBoardRepository(logger);
             var board = Board.Create("Board", Guid.NewGuid());
             await repo.AddAsync(board, CancellationToken.None);
             board.Rename("Updated");
@@ -49,7 +52,8 @@ namespace DailyBoard.Infrastructure.Tests
         [Fact]
         public async Task DeleteAsync_ShouldRemoveBoard()
         {
-            var repo = new InMemoryBoardRepository();
+            var logger = Microsoft.Extensions.Logging.Abstractions.NullLogger<DailyBoard.Infrastructure.Repositories.InMemoryBoardRepository>.Instance;
+            var repo = new InMemoryBoardRepository(logger);
             var board = Board.Create("Board", Guid.NewGuid());
             await repo.AddAsync(board, CancellationToken.None);
             await repo.DeleteAsync(board.Id, CancellationToken.None);
