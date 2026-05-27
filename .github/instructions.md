@@ -1,54 +1,69 @@
-# DailyBoard Project Agent Instructions
+## Purpose
+Provide clear, actionable project standards and expectations for contributors, reviewers, and automation (CI). Follow these rules on all changes to application code.
+
+## Scope
+Applies to: Domain, Application, Infrastructure, API, Web, and Tests folders. Test projects and CI pipelines must reflect any behavior changes.
 
 ## Technologies
-- Backend: C# (.NET, ASP.NET Core, MediatR, EF Core, xUnit)
+- Backend: C# (.NET, ASP.NET Core), MediatR, EF Core, xUnit
 - Frontend: React 18, Vite, TypeScript, Tailwind CSS
 
-## Coding Standards
-- **Naming Conventions:**
-  - C#: Use PascalCase for classes, methods, and properties. Use camelCase for local variables and parameters. Use singular names for entities and plural for collections.
-  - React/TypeScript: Use PascalCase for components, camelCase for variables/functions, UPPER_SNAKE_CASE for constants.
-- **File/Folder Structure:**
-  - Strict Clean Architecture: Domain, Application, Infrastructure, Api, Web, Tests. No cross-layer dependencies except as allowed by Clean Architecture.
-  - Place each class/interface in its own file.
+## Standards
+
+- **Naming:**
+  - C#: PascalCase for types/members; camelCase for parameters/locals. Use singular entity names.
+  - React/TS: PascalCase components; camelCase functions/variables; UPPER_SNAKE_CASE for constants.
+
+- **Architecture:**
+  - Strict Clean Architecture: Domain ← Application ← Infrastructure ← Api/Web. No downward references outside allowed boundaries.
+  - One public class/interface per file.
+
 - **Documentation:**
-  - All public methods and classes must have XML doc comments (C#) or JSDoc (TypeScript).
-- **Testing:**
-  - Use TDD: Write failing tests first, then implement code to pass.
-  - Use xUnit for C#, React Testing Library/Jest for frontend.
-  - All new features must have corresponding tests.
-  - **Any change to application code (domain, application, infrastructure, or API) must be reflected in the test cases.**
-  - When updating method signatures, adding properties, or changing logic, update or add tests to match.
-- **Code Suggestions:**
-  - Suggest refactoring for readability, maintainability, and performance.
-  - Prefer async/await and CancellationToken in C# APIs.
-  - Use Result<T> or similar for error handling in business logic.
-  - Use MediatR for CQRS (commands/queries) in Application layer.
-  - Use dependency injection everywhere.
-  - Use Tailwind for all styling in React; avoid component libraries unless approved.
-- **Clean Code Principles:**
-  - Single Responsibility Principle: Each class/function does one thing.
-  - No magic strings/numbers; use constants or enums.
-  - Keep methods short and focused.
-  - Avoid code duplication; extract shared logic.
-  - Use meaningful names everywhere.
-- **Other Important Rules:**
-  - All warnings as errors; nullable enabled in C#.
-  - No secrets in source code; use .env or user-secrets.
-  - All code must be async where possible.
-  - Use ProblemDetails for API error responses.
-  - All code must be self-explanatory or commented.
+  - Public C# types/members require XML docs. Public TS/JS APIs require JSDoc.
 
-## Example Prompts
-- "Add a new board entity using TDD."
-- "Refactor this MediatR handler for clarity."
-- "Suggest a React component structure for the dashboard page."
-- "Enforce naming conventions in this file."
+- **Async & Cancellation:**
+  - Prefer async/await and accept CancellationToken for cancellable operations.
 
-## Related Customizations to Consider
-- Add a .editorconfig for C# and TypeScript formatting.
-- Create a PR template enforcing TDD and documentation.
-- Add a style guide for React components.
+- **Error Handling:**
+  - Use Result<T> or equivalent for domain errors. API errors should use RFC 7807 ProblemDetails.
+
+- **Security & Secrets:**
+  - No secrets in source. Use user-secrets, environment variables, or a secrets manager.
+
+- **Formatting & Linting:**
+  - Add/adhere to .editorconfig, dotnet-format, and ESLint/Prettier for frontend.
+
+- **Build Policy:**
+  - Treat warnings as errors. Enable nullable reference types in C# projects.
+
+## Testing and TDD
+
+- Use TDD: prefer writing failing unit tests first, then implement to pass.
+- Use xUnit for C#, React Testing Library + Jest for frontend.
+- Every feature/behavior change requires tests. Any change in signatures, models, or business logic must update tests accordingly.
+- Keep tests fast, deterministic, and independent. Use in-memory or test doubles for external dependencies.
+
+## Pull Requests & CI
+
+- PR checklist (required):
+  - Tests added/updated and passing locally.
+  - Linting and formatting applied.
+  - XML/JSDoc added for public surface changes.
+  - No secrets or credentials introduced.
+  - Description explains the rationale and any breaking changes.
+
+- CI must run: build, tests, lint, and formatting checks. Do not merge failing pipelines.
+
+## Examples (prompts for the agent)
+- Add a new board entity using TDD.
+- Refactor this MediatR handler for clarity and add tests.
+- Suggest a React component structure for the dashboard page.
+- Enforce naming conventions in a file or set of files.
+
+## Recommended Repo Improvements
+- Add a `.editorconfig` and `dotnet format` configuration.
+- Create a PR template enforcing the PR checklist above.
+- Add a CONTRIBUTING.md with branch, commit, and release guidance.
 
 ---
-This file enforces project-wide standards for code quality, structure, and workflow. All contributors must follow these rules for every change.
+These guidelines help keep the codebase maintainable, testable, and secure. If a rule is unclear or conflicts with a pragmatic need, propose an exception in the PR description for reviewer approval.
