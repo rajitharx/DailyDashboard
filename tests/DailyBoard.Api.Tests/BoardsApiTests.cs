@@ -9,7 +9,7 @@ namespace DailyBoard.Api.Tests
 {
     public class BoardsApiTests
     {
-        [Fact(Skip = "API endpoint not implemented yet")]
+        [Fact]
         public async Task PostBoards_ShouldReturnCreatedAndBoardId()
         {
             // Arrange
